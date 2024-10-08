@@ -43,7 +43,7 @@ class Filter extends StatelessWidget{
         bottom: BorderSide(color: Colors.black12)
       )),
       child: Padding(
-        padding: const EdgeInsets.only(left: 16.0,bottom: 16.0),
+        padding: const EdgeInsets.only(left: 16.0,bottom: 4,top: 4),
         child: Row(
           children: [
             SizedBox(
