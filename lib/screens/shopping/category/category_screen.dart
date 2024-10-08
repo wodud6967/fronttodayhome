@@ -7,11 +7,13 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        CategoryAppbar(),
-        CategoryCategorylist(),
-      ],
+    return Scaffold(
+      body: ListView(
+        children: [
+          CategoryAppbar(),
+          CategoryCategoryList(),
+        ],
+      ),
     );
   }
 }

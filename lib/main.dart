@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fronttodayhome/screens/main_screens.dart';
+import 'package:fronttodayhome/screens/shopping/shopping_list/shopping_list_screen.dart';
 import 'package:fronttodayhome/theme.dart';
 
 
+
 void main() {
-  runApp( CarrotMarketUI());
+  runApp(ProviderScope(child: TodayHome()));
 }
 
-class CarrotMarketUI extends StatelessWidget {
+class TodayHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'carrot_market_ui',
+      routes: {
+        "/shoppinglist" : (context) => ShoppingListScreen(),
+      },
+      title: 'today_home_ui',
       debugShowCheckedModeBanner: false,
       home: MainScreens(),
       theme: theme(),
