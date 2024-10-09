@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fronttodayhome/screens/home/home_sceen.dart';
 import 'package:fronttodayhome/screens/looking/looking_screen.dart';
 import 'package:fronttodayhome/screens/my_page/my_page_screen.dart';
-import 'package:fronttodayhome/screens/shopping/shopping_screen.dart';
+import 'package:fronttodayhome/screens/shopping/category/category_screen.dart';
 
 class MainScreens extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _MainScreensState extends State<MainScreens> {
         children: [
           HomeScreen(),
           LookingScreen(),
-          ShoppingScreen(),
+          CategoryScreen(),
           MyPageScreen(),
 
 
