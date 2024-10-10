@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:fronttodayhome/screens/my_page/component/my_page_appbar.dart';
-import 'package:fronttodayhome/screens/my_page/component/my_page_button.dart';
-import 'package:fronttodayhome/screens/my_page/component/my_page_header.dart';
-import 'package:fronttodayhome/screens/my_page/component/my_page_mypagelist.dart';
-import 'package:fronttodayhome/screens/my_page/component/my_page_tabbar.dart';
+
+import 'component/my_page_appbar.dart';
+import 'component/my_page_button.dart';
+import 'component/my_page_header.dart';
+import 'component/my_page_tabbar.dart';
 
 class MyPageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Column(
         children: [
           MyPageAppbar(),
           SizedBox(height: 20), // MyPageAppbar와 MyPageHeader 사이에 간격 추가
@@ -17,16 +17,11 @@ class MyPageScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20, bottom: 20), // 상하로만 패딩 적용
             child: MyPageHeader(),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            // MyPageButton에 상하로만 패딩 적용
-            child: MyPageButton(),
-          ),
-          MyPageTabbar(),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 20),
-            // MyPageMypagelist에 상하로만 패딩 적용
-            child: MyPageMypagelist(),
+          // MyPageButton에 상하로만 패딩 적용
+          MyPageButton(),
+          Expanded(
+            // 여기에 Expanded 추가
+            child: MyPageTabbar(),
           ),
         ],
       ),
