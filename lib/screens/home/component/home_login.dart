@@ -27,6 +27,6 @@ class HomeLogin extends StatelessWidget {
           ),
         ),
       ],
-    );;
+    );
   }
 }

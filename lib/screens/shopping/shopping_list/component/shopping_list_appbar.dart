@@ -24,7 +24,7 @@ class ShoppingListAppbar extends StatelessWidget {
               const Spacer(),
               InkWell(onTap:(){ Navigator.pop(context);},child: Icon(Icons.search_rounded,size: 25,)),
               const SizedBox(width: 8),
-              InkWell(onTap:(){ Navigator.pop(context);},child: Icon(Icons.shopping_cart_outlined,size: 25,)),
+              InkWell(onTap:(){ Navigator.pushNamed(context, "/cart");},child: Icon(Icons.shopping_cart_outlined,size: 25,)),
 
 
             ],
