@@ -57,9 +57,6 @@ class CartScreenListProduct extends StatelessWidget {
 }
 
 class _NextCheckBox extends StatelessWidget {
-  const _NextCheckBox({
-    super.key,
-  });
 
   @override
   Widget build(BuildContext context) {
