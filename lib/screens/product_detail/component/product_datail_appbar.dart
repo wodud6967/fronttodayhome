@@ -51,12 +51,12 @@ class _detailappbar extends StatelessWidget {
               const Spacer(),
               Center(
                   child: Text(
-                "$name",
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600),
-              )),
+                    "$name",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600),
+                  )),
               const Spacer(),
               InkWell(
                   onTap: () {
