@@ -43,6 +43,8 @@ class _OrderScreenDestinationState extends State<OrderScreenDestination> {
             children: [
               Checkbox(
                 value: checked,
+                fillColor: WidgetStatePropertyAll(Colors.lightBlueAccent),
+                side: BorderSide(color: Colors.white),
                 onChanged: (bool? value) {
                   setState(() {
                     checked = value!; // 상태 업데이트

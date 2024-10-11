@@ -38,11 +38,10 @@ class OrderScreenTotalPrice extends StatelessWidget {
                 child: Container(
                   width: 370,
                   height: 40,
-                  decoration: BoxDecoration(color: Colors.lightBlueAccent),
+                  decoration: BoxDecoration(color: Colors.lightBlueAccent,borderRadius: BorderRadius.circular(7)),
+                  child: Center(child: Text("249,000원 결제하기",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16))),
                 ),
               ),
-              SizedBox(height: 200),
-
             ],
           ),
         ),
