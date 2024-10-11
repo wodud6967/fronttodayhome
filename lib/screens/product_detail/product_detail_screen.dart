@@ -22,10 +22,11 @@ class ProductDetailScreen extends StatelessWidget {
           SizedBox(height: 20),
           ProductDetailProductinfo(),
           SizedBox(height: 20),
-          ProductDetailReivew(),
+          ProductDetailReview(),
         ],
       ),
       bottomNavigationBar: ProductDetailNavibar(),
     );
   }
 }
+

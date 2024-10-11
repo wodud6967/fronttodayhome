@@ -18,7 +18,7 @@ class _ProductDetailNavibarState extends State<ProductDetailNavibar> {
       height: 80, // NAVIBAR의 높이 설정
       decoration: BoxDecoration(
         border:
-            Border(top: BorderSide(color: Colors.grey, width: 0.5)), // 상단 경계선
+        Border(top: BorderSide(color: Colors.grey, width: 0.5)), // 상단 경계선
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween, // 아이콘과 버튼을 양쪽에 배치
@@ -103,7 +103,7 @@ class _ProductDetailNavibarState extends State<ProductDetailNavibar> {
             value: selectedColor, // 현재 선택된 색상
             items: ['Red', 'Blue', 'Green', 'Orange', 'Black']
                 .map((color) =>
-                    DropdownMenuItem(value: color, child: Text(color)))
+                DropdownMenuItem(value: color, child: Text(color)))
                 .toList(),
             onChanged: (value) {
               setState(() {

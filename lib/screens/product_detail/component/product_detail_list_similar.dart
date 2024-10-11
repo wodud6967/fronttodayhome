@@ -9,10 +9,10 @@ class ProductDetailListSimilar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [
+      children: [
         mTitle(),
-          Products(),
-          Container(height: 15, color: Colors.black12),
+        Products(),
+        Container(height: 15, color: Colors.black12),
       ],
     );
   }
