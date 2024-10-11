@@ -5,7 +5,8 @@ import 'package:fronttodayhome/screens/shopping/category/category_screen_vm.dart
 class CategoryCategoryList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
-    int index = ref.watch(CategoryScreenProvider);
+    CategoryScreenModel watch = ref.watch(CategoryScreenProvider);
+    int index = watch.selectedIndex;
     final List<String> categories = [
       "가구",
       "패브릭",
