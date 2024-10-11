@@ -42,11 +42,11 @@ class _MainScreensState extends State<MainScreens> {
           const BottomNavigationBarItem(
               label: '홈', icon: Icon(CupertinoIcons.home)),
           const BottomNavigationBarItem(
-              label: '둘러보기', icon: Icon(CupertinoIcons.square_on_square)),
+              label: '둘러보기', icon: Icon(CupertinoIcons.square_fill_on_square_fill)),
           const BottomNavigationBarItem(
-              label: '쇼핑', icon: Icon(CupertinoIcons.placemark)),
+              label: '쇼핑', icon: Icon(CupertinoIcons.placemark_fill)),
           const BottomNavigationBarItem(
-              label: '마이페이지', icon: Icon(CupertinoIcons.person)),
+              label: '마이페이지', icon: Icon(CupertinoIcons.person_fill)),
         ],
       ),
     );
