@@ -4,10 +4,10 @@ import 'package:fronttodayhome/screens/home/component/home_login.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        HomeLogin(),
-      ],
-    );
+     return ListView(
+       children: [
+         HomeLogin(),
+       ],
+     );
   }
 }
