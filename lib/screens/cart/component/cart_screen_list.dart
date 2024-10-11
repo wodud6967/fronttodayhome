@@ -59,11 +59,14 @@ class _CartScreenListState extends State<CartScreenList> {
             Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 45,
-                                decoration: BoxDecoration(color: Colors.lightBlueAccent,borderRadius: BorderRadius.circular(7)),
-                                child: Center(child: Text("바로구매",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
-                              ),
+                  child: InkWell(
+                    onTap: (){ Navigator.pushNamed(context, "/order");},
+                    child: Container(
+                      height: 45,
+                                  decoration: BoxDecoration(color: Colors.lightBlueAccent,borderRadius: BorderRadius.circular(7)),
+                                  child: Center(child: Text("바로구매",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
+                                ),
+                  ),
                 )),
           ],
         ),
