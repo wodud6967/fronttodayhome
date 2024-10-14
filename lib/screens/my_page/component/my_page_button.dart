@@ -85,6 +85,7 @@ class _ShareButton extends StatelessWidget {
     return InkWell(
       onTap: () {
         print("공유 클릭됨");
+        Navigator.pushNamed(context, "/kakaopay");
       },
       child: Container(
         alignment: Alignment.center,

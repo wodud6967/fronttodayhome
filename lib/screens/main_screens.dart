@@ -9,8 +9,10 @@ class MainScreens extends StatefulWidget {
   @override
   _MainScreensState createState() => _MainScreensState();
 }
+
 class _MainScreensState extends State<MainScreens> {
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +24,6 @@ class _MainScreensState extends State<MainScreens> {
           LookingScreen(),
           CategoryScreen(),
           MyPageScreen(),
-
-
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -42,7 +42,8 @@ class _MainScreensState extends State<MainScreens> {
           const BottomNavigationBarItem(
               label: '홈', icon: Icon(CupertinoIcons.home)),
           const BottomNavigationBarItem(
-              label: '둘러보기', icon: Icon(CupertinoIcons.square_fill_on_square_fill)),
+              label: '둘러보기',
+              icon: Icon(CupertinoIcons.square_fill_on_square_fill)),
           const BottomNavigationBarItem(
               label: '쇼핑', icon: Icon(CupertinoIcons.placemark_fill)),
           const BottomNavigationBarItem(
