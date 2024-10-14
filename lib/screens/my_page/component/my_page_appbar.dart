@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fronttodayhome/screens/main_screens.dart';
 
 import '../../cart/cart_screen.dart';
 import '../../shopping/shopping_list/shopping_list_screen.dart';
@@ -56,7 +57,7 @@ class _TextShopping extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ShoppingListScreen(),
+            builder: (context) => MainScreens(),
           ),
         );
         print("쇼핑 클릭됨");
