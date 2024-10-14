@@ -3,38 +3,55 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fronttodayhome/data/category_repository.dart';
 
 class CategoryScreenModel {
-  int selectedIndex = 1;
+  int selectedIndex = 0;
   List<_LCategory>? list;
+
   CategoryScreenModel({required this.selectedIndex, this.list});
 }
-class _LCategory{
+
+class _LCategory {
   int id;
   String name;
-  List<_LCategory> sList;
+  List<_SCategory> sList;
 
-  _LCategory(this.id,this.name,this.sList);
+  _LCategory(this.id, this.name, this.sList);
 
+  _LCategory.fromMap(map)
+      : this.id = map["seleted"],
+        this.name = map["name"],
+        this.sList = (map["subCategoryDTOS"] as List<dynamic>)
+            .map((e) => _SCategory.fromMap(e))
+            .toList();
 }
-class _SCategory{
+
+class _SCategory {
   int id;
   String name;
+
   _SCategory(this.id, this.name);
+
+  _SCategory.fromMap(Map<String, dynamic> map)
+      : id = map["id"],
+        name = map["name"];
 }
 
 class CategoryScreenVm extends StateNotifier<CategoryScreenModel> {
   CategoryScreenVm(super.state);
 
+  List<_LCategory>? categorys;
+
   Future<void> notifyInit() async {
     // 1. 통신을 해서 응답 받기
     List<dynamic> list = await CategoryRepository().findAll();
-
+    categorys =
+        list.map((e) => _LCategory.fromMap(e)).toList();
 
     // 2. 상태 갱신
-    state = CategoryScreenModel(selectedIndex: 0, list: list);
+    state = CategoryScreenModel(selectedIndex: 0, list: categorys);
   }
 
   void updateIndex(int newIndex) {
-    state = CategoryScreenModel(selectedIndex: newIndex);
+    state = CategoryScreenModel(selectedIndex: newIndex, list: categorys);
   }
 }
 
