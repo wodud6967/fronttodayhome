@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../cart/cart_screen.dart';
+import '../../shopping/shopping_list/shopping_list_screen.dart';
+
 class MyPageAppbar extends StatelessWidget {
   const MyPageAppbar({super.key});
 
@@ -27,7 +30,14 @@ class MyPageAppbar extends StatelessWidget {
         ),
         IconButton(
           icon: Icon(Icons.shopping_cart),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CartScreen(),
+              ),
+            );
+          },
         ),
       ],
     );
@@ -43,6 +53,12 @@ class _TextShopping extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ShoppingListScreen(),
+          ),
+        );
         print("쇼핑 클릭됨");
       },
       child: Text(
