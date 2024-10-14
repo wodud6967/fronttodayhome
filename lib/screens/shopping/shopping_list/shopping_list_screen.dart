@@ -7,18 +7,20 @@ import 'component/shopping_list_products.dart';
 import 'component/shopping_list_similar_products.dart';
 
 class ShoppingListScreen extends StatelessWidget {
+  final id;
+  final name;
+  ShoppingListScreen(this.id, this.name);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          ShoppingListAppbar("침대"),
+          ShoppingListAppbar("$name"),
           ShoppingListBanner(),
           ShoppingListSimilarProducts(),
           ShoppingListFilter(),
           ShoppingListProducts(),
-
-
         ],
       ),
     );
