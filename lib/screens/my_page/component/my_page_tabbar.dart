@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../product_reivew/product_reivew_screen.dart';
+
 class MyPageTabbar extends StatefulWidget {
   @override
   _MyPageTabbarState createState() => _MyPageTabbarState();
@@ -71,7 +73,7 @@ class _TabBarView extends StatelessWidget {
                               color: Colors.green,
                             ),
                           ),
-                          Text('10/1(일) 도착'),
+                          Text('10/18(일) 도착'),
                         ],
                       ),
                       Divider(),
@@ -94,13 +96,16 @@ class _TabBarView extends StatelessWidget {
                                 Text(
                                   '제품명 $index',
                                   style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 SizedBox(height: 5),
-                                Text('495,000원  •  1개'),
+                                Text(
+                                  '495,000원  •  1개',
+                                  style: TextStyle(color: Colors.black87),
+                                ),
                               ],
                             ),
                           ),
@@ -144,7 +149,16 @@ class _TabBarView extends StatelessWidget {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // 리뷰 작성 페이지로 이동
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ProductReviewScreen(), // 올바른 클래스 이름으로 수정
+                                ),
+                              );
+                            },
                             child: Text(
                               '리뷰쓰기',
                               style: TextStyle(
@@ -188,8 +202,8 @@ class _Tabbar extends StatelessWidget {
       unselectedLabelColor: Colors.grey,
       indicatorColor: Colors.blue,
       tabs: const [
-        Tab(text: "구매 제품"), // 첫 번째 탭
-        Tab(text: "스크랩"), // 두 번째 탭
+        Tab(text: "주문 목록"), // 첫 번째 탭
+        Tab(text: "나의 리뷰"), // 두 번째 탭
       ],
     );
   }

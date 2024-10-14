@@ -14,7 +14,9 @@ class MyPageScreen extends StatelessWidget {
           MyPageAppbar(),
           SizedBox(height: 20), // MyPageAppbar와 MyPageHeader 사이에 간격 추가
           Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 20), // 상하로만 패딩 적용
+            padding: const EdgeInsets.only(top: 10, bottom: 20),
+
+            // 상하로만 패딩 적용
             child: MyPageHeader(),
           ),
           // MyPageButton에 상하로만 패딩 적용

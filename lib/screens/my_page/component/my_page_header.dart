@@ -15,35 +15,39 @@ class MyPageHeader extends StatelessWidget {
   }
 
   Widget _buildHeaderProfile() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start, // 프로필 텍스트 왼쪽 정렬
-      children: [
-        Text(
-          "NickName", // 닉네임
-          style: TextStyle(
-            fontSize: 25,
-            color: Colors.black,
-            fontWeight: FontWeight.w700,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16), // 좌우 16픽셀의 패딩 적용
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // 프로필 텍스트 왼쪽 정렬
+        children: [
+          Text(
+            "NickName", // 닉네임
+            style: TextStyle(
+              fontSize: 25,
+              color: Colors.black,
+              fontWeight: FontWeight.w700,
+            ),
           ),
-        ),
-        Row(
-          children: [
-            Text(
-              "팔로워", // 팔로워 텍스트
-              style: TextStyle(
-                fontSize: 15,
+          Row(
+            children: [
+              Text(
+                "팔로워", // 팔로워 텍스트
+                style: TextStyle(
+                  fontSize: 15,
+                ),
               ),
-            ),
-            SizedBox(width: 5), // 팔로워와 수 사이의 간격
-            Text(
-              "0", // 팔로워 수
-              style: TextStyle(
-                fontSize: 15,
+              SizedBox(width: 5), // 팔로워와 수 사이의 간격
+              Text(
+                "0", // 팔로워 수
+                style: TextStyle(
+                  fontSize: 15,
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
