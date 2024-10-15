@@ -15,11 +15,8 @@ class ShoppingListProducts extends StatelessWidget {
           Wrap(
             children: [
               for (int i = 0; i < 20; i++) Product(),
-
             ],
           ),
-
-
         ],
       ),
     );

@@ -13,19 +13,22 @@ class HomeLogin extends StatelessWidget {
             color: Colors.yellow,
           ),
         ),
-        TextFormField(
+        TextFormField(initialValue: "ssar",
           decoration: InputDecoration(
             hintText: "username",
             prefixIcon: Icon(Icons.person),
           ),
         ),
-        TextFormField(
+        TextFormField(initialValue: "1234",
           obscureText: true,
           decoration: InputDecoration(
             hintText: "password",
             prefixIcon: Icon(Icons.key),
           ),
         ),
+        TextButton(onPressed: (){
+
+        }, child: Text("로그인")),
       ],
     );
   }

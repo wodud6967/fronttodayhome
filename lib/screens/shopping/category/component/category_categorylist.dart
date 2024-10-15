@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fronttodayhome/screens/shopping/category/category_screen_vm.dart';
+import 'package:fronttodayhome/screens/shopping/shopping_list/shopping_list_screen.dart';
 
 class CategoryCategoryList extends ConsumerWidget {
   @override
@@ -89,7 +90,7 @@ class _CategoryListDetailState extends State<CategoryListDetail> {
                       children: [
                         InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, "/shoppinglist");
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingListScreen(detail["id"],detail["name"])));
                             },
                             child: Text("전체")),
                       ],
