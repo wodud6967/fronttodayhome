@@ -41,8 +41,8 @@ class _Buttons extends StatelessWidget {
 }
 
 class _EmailLogin extends StatelessWidget {
-  final _username = TextEditingController();
-  final _password = TextEditingController();
+  final _username = TextEditingController(text: "ssar");
+  final _password = TextEditingController(text: "1234");
 
 
   @override
@@ -88,10 +88,8 @@ class _EmailLogin extends StatelessWidget {
   }
 }
 
+// 추후 사용예정
 class _ForEmail extends StatelessWidget {
-  const _ForEmail({
-    super.key,
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -143,9 +141,6 @@ class _OthersButton extends StatelessWidget {
 }
 
 class _KakaoButton extends StatelessWidget {
-  const _KakaoButton({
-    super.key,
-  });
 
   @override
   Widget build(BuildContext context) {
