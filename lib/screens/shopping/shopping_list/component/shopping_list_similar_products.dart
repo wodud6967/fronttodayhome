@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:fronttodayhome/screens/product_detail/product_detail_screen.dart';
+import 'package:fronttodayhome/screens/shopping/shopping_list/shopping_list_vm.dart';
 
 
 import 'Shopping_list_product_event.dart';
 
 
 class ShoppingListSimilarProducts extends StatelessWidget {
+  final List<Product> model;
+  ShoppingListSimilarProducts(this.model);
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         mTitle(),
-        Products(),
+        Products(model),
         Container(height: 15, color: Colors.black12),
       ],
     );
@@ -19,6 +24,10 @@ class ShoppingListSimilarProducts extends StatelessWidget {
 }
 
 class Products extends StatelessWidget {
+  final List<Product> model;
+
+  Products(this.model);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -27,16 +36,97 @@ class Products extends StatelessWidget {
         padding: const EdgeInsets.only(left: 18),
         child: ListView(
           scrollDirection: Axis.horizontal,
-          children: [
-            for (int i = 0; i < 20; i++) ProductSample(),
-          ],
+          children: model.map((post) {
+            return _Product(post); // 각 post를 전달
+          }).toList(),
         ),
       ),
     );
   }
 }
+class _Product extends StatelessWidget {
+  final Product product;
 
+  _Product(this.product);
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(), // 상세보기 페이지로 이동
+          ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: SizedBox(
+          width: 140,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AspectRatio(
+                  aspectRatio: 1 / 1,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(7),
+                    child: Image.network(product.mainPhoto,
+                        fit: BoxFit.cover),
+                  )),
+              const SizedBox(height: 5),
+              Text(
+                product.title,
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+              ),
+              Text(
+                product.content,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(color: Colors.black),
+              ),
+              SizedBox(height: 2),
+              Row(
+                children: [
+                  Text("53%",
+                      style: TextStyle(
+                          color: Colors.lightBlueAccent,
+                          fontWeight: FontWeight.bold)),
+                  SizedBox(width: 5),
+                  Text("${product.price}",
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold)),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.star, size: 16, color: Colors.lightBlueAccent),
+                  Text("4.7",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12)),
+                  const SizedBox(width: 5),
+                  Text("리뷰", style: TextStyle(fontSize: 12)),
+                  const SizedBox(width: 5),
+                  Text("${product.reviews.length}", style: TextStyle(fontSize: 12)),
+                ],
+              ),
+              Row(
+                children: [
+                  ShoppingListProductEvent("특가", Colors.white, Colors.redAccent),
+                  ShoppingListProductEvent("무료배송", Colors.black, Colors.black12),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 class ProductSample extends StatelessWidget {
+
+  ProductSample();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -64,11 +154,11 @@ class ProductSample extends StatelessWidget {
                   )),
               const SizedBox(height: 5),
               Text(
-                "에이스침대",
+                "수정",
                 style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
               ),
               Text(
-                "가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사",
+                "수정",
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(color: Colors.black),
@@ -81,7 +171,7 @@ class ProductSample extends StatelessWidget {
                           color: Colors.lightBlueAccent,
                           fontWeight: FontWeight.bold)),
                   SizedBox(width: 5),
-                  Text("764.000",
+                  Text("수정",
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.bold)),
                 ],
@@ -97,7 +187,7 @@ class ProductSample extends StatelessWidget {
                   const SizedBox(width: 5),
                   Text("리뷰", style: TextStyle(fontSize: 12)),
                   const SizedBox(width: 5),
-                  Text("30217", style: TextStyle(fontSize: 12)),
+                  Text("수정", style: TextStyle(fontSize: 12)),
                 ],
               ),
               Row(

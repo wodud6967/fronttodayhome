@@ -10,6 +10,8 @@ import 'package:fronttodayhome/theme.dart';
 
 import 'screens/login/login_screen.dart';
 
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 void main() {
   runApp(ProviderScope(child: TodayHome()));
 }
@@ -29,6 +31,7 @@ class TodayHome extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MainScreens(),
       theme: theme(),
+      navigatorKey: navigatorKey,
     );
   }
 }

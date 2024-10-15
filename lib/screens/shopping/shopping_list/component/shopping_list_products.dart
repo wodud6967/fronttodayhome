@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:fronttodayhome/screens/shopping/shopping_list/shopping_list_vm.dart';
 
 import '../../../product_detail/product_detail_screen.dart';
 import 'Shopping_list_product_event.dart';
 
 class ShoppingListProducts extends StatelessWidget {
+  final List<Product> model;
+  ShoppingListProducts(this.model);
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,9 +18,9 @@ class ShoppingListProducts extends StatelessWidget {
           ProductsHeader(),
           ProductsOption(),
           Wrap(
-            children: [
-              for (int i = 0; i < 20; i++) Product(),
-            ],
+            children: model.map((post) {
+              return _Product(post); // 각 post를 전달
+            }).toList(),
           ),
         ],
       ),
@@ -23,7 +28,10 @@ class ShoppingListProducts extends StatelessWidget {
   }
 }
 
-class Product extends StatelessWidget {
+class _Product extends StatelessWidget {
+  Product product;
+  _Product(this.product);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -46,16 +54,16 @@ class Product extends StatelessWidget {
                   aspectRatio: 1 / 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(7),
-                    child: Image.network("https://picsum.photos/id/200/200/300",
+                    child: Image.network(product.mainPhoto,
                         fit: BoxFit.cover),
                   )),
               const SizedBox(height: 5),
               Text(
-                "에이스침대",
+                  product.title,
                 style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
               ),
               Text(
-                "가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사",
+                product.content,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(color: Colors.black),
@@ -68,7 +76,7 @@ class Product extends StatelessWidget {
                           color: Colors.lightBlueAccent,
                           fontWeight: FontWeight.bold)),
                   SizedBox(width: 5),
-                  Text("764.000",
+                  Text("${product.price}",
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.bold)),
                 ],
@@ -84,7 +92,7 @@ class Product extends StatelessWidget {
                   const SizedBox(width: 5),
                   Text("리뷰", style: TextStyle(fontSize: 12)),
                   const SizedBox(width: 5),
-                  Text("30217", style: TextStyle(fontSize: 12)),
+                  Text("${product.reviews.length}", style: TextStyle(fontSize: 12)),
                 ],
               ),
               Row(

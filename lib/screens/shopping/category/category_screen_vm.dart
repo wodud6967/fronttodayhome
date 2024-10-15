@@ -1,6 +1,6 @@
 // 뷰 모델 (창고)
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fronttodayhome/data/category_repository.dart';
+import 'package:fronttodayhome/data/repository/category_repository.dart';
 
 class CategoryScreenModel {
   int selectedIndex = 0;

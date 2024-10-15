@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:fronttodayhome/screens/cart/cart_vm.dart';
 
 class CartScreenProductCount extends StatefulWidget {
+  final ShoppingCartItem product;
+
+  CartScreenProductCount(this.product);
+
   @override
   State<CartScreenProductCount> createState() => _CartScreenProductCountState();
 }
 
 class _CartScreenProductCountState extends State<CartScreenProductCount> {
-  int _count = 1;
-  int _price = 179000;
-
-  void _increment() {
-    setState(() {
-      _count++;
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      if (_count > 0) _count--;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +22,11 @@ class _CartScreenProductCountState extends State<CartScreenProductCount> {
           children: [
             Container(
               width: 340,
-              decoration: BoxDecoration(
-                  color: Colors.black12, borderRadius: BorderRadius.circular(5)),
+              decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(5)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Text("부클 스틸 블루", style: TextStyle(color: Colors.black)),
-                        Spacer(),
-                        Icon(Icons.close),
-                      ],
-                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -51,27 +34,23 @@ class _CartScreenProductCountState extends State<CartScreenProductCount> {
                           Row(
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  _Button("-", _decrement),
-                                  SizedBox(width: 20), // 버튼과 숫자 사이의 간격
+                                  Text("수량  ", style: TextStyle(color: Colors.black)),
                                   Text(
-                                    '$_count',
-                                    style: TextStyle(color: Colors.black), // 숫자 크기 조절
+                                    '${widget.product.count}',
+                                    style: TextStyle(color: Colors.black),
                                   ),
-                                  SizedBox(width: 20), // 숫자와 버튼 사이의 간격
-                                  _Button("+", _increment),
                                 ],
                               ),
                               Spacer(),
                               Text(
-                                "${_count * _price}",
+                                "${widget.product.count * widget.product.price}", // Use price from the model
                                 style: TextStyle(color: Colors.black),
                               ),
                               Text("원", style: TextStyle(color: Colors.black)),
                             ],
                           ),
-
                         ],
                       ),
                     ),
@@ -94,24 +73,23 @@ class _CartScreenProductCountState extends State<CartScreenProductCount> {
                   Text("바로구매"),
                   Spacer(),
                   Text(
-                    "${_count * _price}",
-                    style: TextStyle(fontSize: 16,color: Colors.black,fontWeight: FontWeight.bold),
+                    "${widget.product.count * widget.product.price}", // Use price from the model
+                    style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
                   ),
-                  Text("원", style: TextStyle(fontSize: 16,color: Colors.black,fontWeight: FontWeight.bold)),
+                  Text("원", style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
           ],
         ),
-
       ),
     );
   }
 }
 
 class _Button extends StatelessWidget {
-  final name;
-  final onPressed;
+  final String name;
+  final VoidCallback onPressed;
 
   _Button(this.name, this.onPressed);
 
@@ -120,8 +98,7 @@ class _Button extends StatelessWidget {
     return Container(
       width: 40,
       height: 20,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(7)),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(7)),
       child: InkWell(
         onTap: onPressed,
         child: Container(

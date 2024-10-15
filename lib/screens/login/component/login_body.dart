@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fronttodayhome/data/gm/session_gm.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 
 class LoginBody extends StatelessWidget {
   @override
@@ -15,14 +17,12 @@ class LoginBody extends StatelessWidget {
         Expanded(
           child: _Buttons(),
         ),
-
       ],
     );
   }
 }
 
 class _Buttons extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,13 +40,12 @@ class _Buttons extends StatelessWidget {
   }
 }
 
-class _EmailLogin extends StatelessWidget {
+class _EmailLogin extends ConsumerWidget {
   final _username = TextEditingController(text: "ssar");
   final _password = TextEditingController(text: "1234");
 
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Row(
@@ -79,8 +78,22 @@ class _EmailLogin extends StatelessWidget {
           Container(
             height: 90,
             width: 70,
-            decoration: BoxDecoration(color: Colors.lightBlueAccent,borderRadius: BorderRadius.circular(13)),
-            child: InkWell(onTap: (){},child: Center(child: Text("로그인",style: GoogleFonts.dongle(fontSize: 30,color: Colors.white),))),
+            decoration: BoxDecoration(
+                color: Colors.lightBlueAccent,
+                borderRadius: BorderRadius.circular(13)),
+            child: InkWell(
+              onTap: () {
+                ref
+                    .read(sessionProvider)
+                    .login(_username.text.trim(), _password.text.trim());
+              },
+              child: Center(
+                child: Text(
+                  "로그인",
+                  style: GoogleFonts.dongle(fontSize: 30, color: Colors.white),
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -90,7 +103,6 @@ class _EmailLogin extends StatelessWidget {
 
 // 추후 사용예정
 class _ForEmail extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -111,7 +123,6 @@ class _ForEmail extends StatelessWidget {
 }
 
 class _OthersButton extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -141,7 +152,6 @@ class _OthersButton extends StatelessWidget {
 }
 
 class _KakaoButton extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -151,7 +161,6 @@ class _KakaoButton extends StatelessWidget {
 }
 
 class _Title extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return InkWell(

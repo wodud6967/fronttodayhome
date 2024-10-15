@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fronttodayhome/screens/cart/cart_vm.dart';
 
 import 'cart_screen_product_count.dart';
 
@@ -6,15 +7,20 @@ class CartScreenListProduct extends StatelessWidget {
   final bool isChecked;
   final ValueChanged<bool?> onChanged;
   final deliveryCharge;
+  final ShoppingCartItem product;
 
-  CartScreenListProduct(
-      {required this.isChecked, required this.onChanged,required this.deliveryCharge});
+  CartScreenListProduct({
+    required this.isChecked,
+    required this.onChanged,
+    required this.deliveryCharge,
+    required this.product// 필수 가격 파라미터 추가
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _ProductHeader(),
+        _ProductHeader(product),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -25,8 +31,8 @@ class CartScreenListProduct extends StatelessWidget {
             SizedBox(width: 16),
           ],
         ),
-        _ImageLine(deliveryCharge),
-        CartScreenProductCount(),
+        _ImageLine(deliveryCharge,product),
+        CartScreenProductCount(product),
         SizedBox(
           height: 40,
           child: Row(
@@ -91,7 +97,8 @@ class _NextCheckBox extends StatelessWidget {
 
 class _ImageLine extends StatelessWidget {
   final deliveryCharge;
-   _ImageLine(this.deliveryCharge);
+  final ShoppingCartItem product;
+   _ImageLine(this.deliveryCharge, this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +111,7 @@ class _ImageLine extends StatelessWidget {
             aspectRatio: 1 / 1,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Image.network("https://picsum.photos/id/200/200/300",
+              child: Image.network(product.mainPhoto,
                   fit: BoxFit.cover),
             ),
           ),
@@ -113,7 +120,7 @@ class _ImageLine extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
               child: Column(
                 children: [
-                  Text("[우드띠어리] 포니 체어 인테리어 거실 라운지 디자인체어 인형 스툴 4collors",
+                  Text(product.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -145,9 +152,8 @@ class _ImageLine extends StatelessWidget {
 }
 
 class _ProductHeader extends StatelessWidget {
-  const _ProductHeader({
-    super.key,
-  });
+  final ShoppingCartItem product;
+  _ProductHeader(this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +163,7 @@ class _ProductHeader extends StatelessWidget {
         height: 40,
         child: Center(
             child: Text(
-          "우드띠어리 배송",
+          "${product.brandName} 배송",
           style:
               TextStyle(fontWeight: FontWeight.w600, color: Colors.black),
         )));
