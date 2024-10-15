@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fronttodayhome/screens/home/home_sceen.dart';
+import 'package:fronttodayhome/screens/login/login_screen.dart';
 import 'package:fronttodayhome/screens/looking/looking_screen.dart';
 import 'package:fronttodayhome/screens/my_page/my_page_screen.dart';
 import 'package:fronttodayhome/screens/shopping/category/category_screen.dart';
@@ -20,7 +20,7 @@ class _MainScreensState extends State<MainScreens> {
         index: _selectedIndex,
         // ❶
         children: [
-          HomeScreen(),
+          LoginScreen(),
           LookingScreen(),
           CategoryScreen(),
           MyPageScreen(),
