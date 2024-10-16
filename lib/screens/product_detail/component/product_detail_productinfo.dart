@@ -113,8 +113,8 @@ class _ProductDetailProductinfoState extends State<ProductDetailProductinfo> {
     // 예시로 주어진 product.mainPhoto를 여러 이미지 URL로 변환하거나 사용
     return [
       widget.product.mainPhoto, // 실제 제품의 mainPhoto를 사용
-      'https://picsum.photos/600/400?image=1',
-      'https://picsum.photos/600/400?image=2',
+      'https://image.hanssem.com/hsimg/gds/330/993/993015_A1.jpg?v=20240812104316',
+      'https://image.hanssem.com/hsimg/gds/330/934/934707_A1.jpg?v=20241014083653',
     ];
   }
 
