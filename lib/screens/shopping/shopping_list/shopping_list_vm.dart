@@ -46,6 +46,27 @@ class Product {
     required this.reviews,
   });
 
+  // 기존의 copyWith 메서드 추가
+  Product copyWith({
+    int? id,
+    String? title,
+    String? content,
+    int? price,
+    String? mainPhoto,
+    String? createdAt,
+    List<Review>? reviews,
+  }) {
+    return Product(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      content: content ?? this.content,
+      price: price ?? this.price,
+      mainPhoto: mainPhoto ?? this.mainPhoto,
+      createdAt: createdAt ?? this.createdAt,
+      reviews: reviews ?? this.reviews,
+    );
+  }
+
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       id: json['id'],
@@ -60,7 +81,6 @@ class Product {
     );
   }
 }
-
 class ShoppingListModel {
   final List<Product> recentPosts;
   final List<Product> pageTotalSold;

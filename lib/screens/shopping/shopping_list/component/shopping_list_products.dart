@@ -6,8 +6,9 @@ import 'Shopping_list_product_event.dart';
 
 class ShoppingListProducts extends StatelessWidget {
   final List<Product> model;
-  ShoppingListProducts(this.model);
+  final int categoryId;
 
+  ShoppingListProducts(this.model, this.categoryId);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ShoppingListProducts extends StatelessWidget {
           ProductsOption(),
           Wrap(
             children: model.map((post) {
-              return _Product(post); // 각 post를 전달
+              return _Product(post, categoryId); // 각 post와 categoryId 전달
             }).toList(),
           ),
         ],
@@ -29,8 +30,10 @@ class ShoppingListProducts extends StatelessWidget {
 }
 
 class _Product extends StatelessWidget {
-  Product product;
-  _Product(this.product);
+  final Product product;
+  final int categoryId; // 추가: categoryId를 받음
+
+  _Product(this.product, this.categoryId);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,10 @@ class _Product extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetailScreen(), // 상세보기 페이지로 이동
+            builder: (context) => ProductDetailScreen(
+              productId: product.id, // productId 전달
+              categoryId: categoryId, // categoryId 전달
+            ),
           ),
         );
       },
@@ -54,12 +60,14 @@ class _Product extends StatelessWidget {
                   aspectRatio: 1 / 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(7),
-                    child: Image.network(product.mainPhoto,
-                        fit: BoxFit.cover),
+                    child: Image.network(
+                      product.mainPhoto,
+                      fit: BoxFit.cover,
+                    ),
                   )),
               const SizedBox(height: 5),
               Text(
-                  product.title,
+                product.title,
                 style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
               ),
               Text(

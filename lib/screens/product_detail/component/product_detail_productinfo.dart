@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import '../../shopping/shopping_list/shopping_list_vm.dart';
+
 
 class ProductDetailProductinfo extends StatefulWidget {
+  final Product product; // Product 객체 추가
+
+  ProductDetailProductinfo({required this.product}); // 생성자 수정
+
   @override
   _ProductDetailProductinfoState createState() =>
       _ProductDetailProductinfoState();
 }
 
 class _ProductDetailProductinfoState extends State<ProductDetailProductinfo> {
-  final List<String> infoimageUrls = [
-    'https://picsum.photos/600/400?image=1',
-    'https://picsum.photos/600/400?image=2',
-    'https://picsum.photos/600/400?image=3',
-    'https://picsum.photos/600/400?image=4',
-  ];
-
   // 펼치기 여부를 관리할 변수
   bool _isExpanded = false;
 
@@ -35,7 +34,8 @@ class _ProductDetailProductinfoState extends State<ProductDetailProductinfo> {
         SizedBox(height: 20),
 
         // 상품 정보가 나오는 위젯 (펼쳐지지 않았을 때만 PageView 표시)
-        if (!_isExpanded) _productinfoImg(infoimageUrls: infoimageUrls),
+        if (!_isExpanded)
+          _productinfoImg(infoimageUrls: _getProductImages()), // 수정된 부분
         SizedBox(height: 20),
 
         // 펼치기 버튼 (펼쳐지지 않았을 때만 보임)
@@ -72,7 +72,7 @@ class _ProductDetailProductinfoState extends State<ProductDetailProductinfo> {
         if (_isExpanded)
           Column(
             children: [
-              _expandedImages(infoimageUrls), // 이미지 리스트
+              _expandedImages(_getProductImages()), // 수정된 부분
               SizedBox(height: 20),
               // 접기 버튼을 이미지 아래에 배치
               ElevatedButton(
@@ -106,6 +106,16 @@ class _ProductDetailProductinfoState extends State<ProductDetailProductinfo> {
           ),
       ],
     );
+  }
+
+  // Product 객체를 사용하여 이미지 URL 리스트 가져오기
+  List<String> _getProductImages() {
+    // 예시로 주어진 product.mainPhoto를 여러 이미지 URL로 변환하거나 사용
+    return [
+      widget.product.mainPhoto, // 실제 제품의 mainPhoto를 사용
+      'https://picsum.photos/600/400?image=1',
+      'https://picsum.photos/600/400?image=2',
+    ];
   }
 
   // 초기 이미지 슬라이드 (펼쳐지지 않았을 때만 보임)

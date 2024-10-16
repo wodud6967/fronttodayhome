@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../../shopping/shopping_list/shopping_list_vm.dart';
+
 class ProductDetailInfo extends StatelessWidget {
-  const ProductDetailInfo({super.key});
+  final Product product;
+
+  ProductDetailInfo({required this.product});
 
   @override
   Widget build(BuildContext context) {
-    return _detailinfoWihet();
+    return _DetailInfoWidget(product: product);
   }
 }
 
-class _detailinfoWihet extends StatelessWidget {
-  const _detailinfoWihet({
-    super.key,
-  });
+class _DetailInfoWidget extends StatelessWidget {
+  final Product product;
+
+  _DetailInfoWidget({required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +25,9 @@ class _detailinfoWihet extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // 브랜드명 (예시로 "퍼니코"를 사용했지만 실제 데이터로 대체)
           Text(
-            "퍼니코",
+            "시몬스", // 이 부분은 하드코딩된 데이터로 남겨둠
             style: TextStyle(fontSize: 12, color: Colors.grey),
           ),
           Row(
@@ -30,9 +35,9 @@ class _detailinfoWihet extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  "원단샘플 빈 아쿠아 텍스 패브릭/부클레 호텔 침대프레임(SS/Q/K/LK/CK)",
+                  product.title, // 상품의 제목 표시
                   style: TextStyle(fontSize: 14, color: Colors.black),
-                  maxLines: 2, //최대 2줄로 설정
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -53,16 +58,16 @@ class _detailinfoWihet extends StatelessWidget {
               Icon(Icons.star_half_rounded, size: 18, color: Colors.lightBlue),
               SizedBox(width: 4),
               Text(
-                "(2,236)",
+                "(${product.reviews.length})", // 리뷰 개수로 표시
                 style: TextStyle(fontSize: 14, color: Colors.lightBlue),
               ),
             ],
           ),
-          SizedBox(width: 4),
+          SizedBox(height: 8),
           Row(
             children: [
               Text(
-                "249,000원",
+                "${product.price}원", // 상품의 가격 표시
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
               SizedBox(width: 4),
@@ -73,7 +78,7 @@ class _detailinfoWihet extends StatelessWidget {
                   borderRadius: BorderRadius.circular(3),
                 ),
                 child: Text(
-                  "특가",
+                  "특가", // 특가 라벨
                   style: TextStyle(
                       fontSize: 13,
                       color: Colors.white,

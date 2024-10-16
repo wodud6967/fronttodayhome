@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fronttodayhome/screens/shopping/shopping_list/shopping_list_vm.dart';
 
 class ProductDetailReview extends StatelessWidget {
-  const ProductDetailReview({super.key});
+  const ProductDetailReview({super.key, required Product product});
 
   @override
   Widget build(BuildContext context) {
     final List<String> reviewImages1 = [
-      'https://picsum.photos/100/100',
       'https://picsum.photos/101/101',
       'https://picsum.photos/102/102',
       'https://picsum.photos/103/103',

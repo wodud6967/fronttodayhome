@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:fronttodayhome/screens/shopping/shopping_list/shopping_list_vm.dart';
+import 'package:logger/logger.dart';
+import '../../../data/repository/cart_repository.dart';
 
 class ProductDetailNavibar extends StatefulWidget {
-  const ProductDetailNavibar({super.key});
+  final Product product; // 수정: Product 객체 추가
+  const ProductDetailNavibar({super.key, required this.product});
 
   @override
   _ProductDetailNavibarState createState() => _ProductDetailNavibarState();
 }
 
 class _ProductDetailNavibarState extends State<ProductDetailNavibar> {
-  String selectedSize = "SS";
-  String selectedColor = "Green";
+  String selectedSize = "스몰";
+  String selectedColor = "화이트";
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // 패딩 추가
-      height: 80, // NAVIBAR의 높이 설정
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      height: 80,
       decoration: BoxDecoration(
-        border:
-        Border(top: BorderSide(color: Colors.grey, width: 0.5)), // 상단 경계선
+        border: Border(top: BorderSide(color: Colors.grey, width: 0.5)),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween, // 아이콘과 버튼을 양쪽에 배치
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -38,15 +41,14 @@ class _ProductDetailNavibarState extends State<ProductDetailNavibar> {
               ),
             ],
           ),
-          SizedBox(width: 16), // 아이콘과 버튼 사이의 간격
-          // 구매하기 버튼
+          SizedBox(width: 16),
           Expanded(
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightBlueAccent, // 버튼 배경색
-                padding: EdgeInsets.symmetric(vertical: 16), // 버튼 내부 패딩
+                backgroundColor: Colors.lightBlueAccent,
+                padding: EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8), // 둥근 모서리
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
               onPressed: () {
@@ -67,7 +69,7 @@ class _ProductDetailNavibarState extends State<ProductDetailNavibar> {
                 '구매하기',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.white, // 텍스트 색상
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -77,46 +79,42 @@ class _ProductDetailNavibarState extends State<ProductDetailNavibar> {
     );
   }
 
-  // 팝업창에 들어갈 내용
   Widget _buildBottomSheetContent(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
-        mainAxisSize: MainAxisSize.min, // 최소 크기로 설정
+        mainAxisSize: MainAxisSize.min,
         children: [
-          // 드롭다운 메뉴 (사이즈, 색상, 추가상품)
           DropdownButtonFormField<String>(
             decoration: InputDecoration(labelText: '사이즈'),
-            value: selectedSize, // 현재 선택된 사이즈
-            items: ['SS', 'Q', 'K', 'LK', 'CK']
+            value: selectedSize,
+            items: ['스몰', '퀸', '킹']
                 .map((size) => DropdownMenuItem(value: size, child: Text(size)))
                 .toList(),
             onChanged: (value) {
               setState(() {
-                selectedSize = value ?? "SS"; // 값이 변경되면 selectedSize 업데이트
+                selectedSize = value ?? "스몰";
               });
             },
           ),
           SizedBox(height: 16),
           DropdownButtonFormField<String>(
             decoration: InputDecoration(labelText: '색상'),
-            value: selectedColor, // 현재 선택된 색상
-            items: ['Red', 'Blue', 'Green', 'Orange', 'Black']
-                .map((color) =>
-                DropdownMenuItem(value: color, child: Text(color)))
+            value: selectedColor,
+            items: ['화이트', '블랙', '초록', '주황', '검정']
+                .map((color) => DropdownMenuItem(value: color, child: Text(color)))
                 .toList(),
             onChanged: (value) {
               setState(() {
-                selectedColor = value ?? "Green"; // 값이 변경되면 selectedColor 업데이트
+                selectedColor = value ?? "화이트";
               });
             },
           ),
           SizedBox(height: 16),
-          // 주문 금액과 버튼들
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("주문금액: 0원", style: TextStyle(fontSize: 16)),
+              Text("주문금액: ${widget.product.price}원", style: TextStyle(fontSize: 16)),
               TextButton(
                 onPressed: () {},
                 child: Text('쿠폰 받기', style: TextStyle(color: Colors.redAccent)),
@@ -124,23 +122,24 @@ class _ProductDetailNavibarState extends State<ProductDetailNavibar> {
             ],
           ),
           SizedBox(height: 16),
-          // 장바구니 버튼
           Row(
             children: [
               Expanded(
                 child: OutlinedButton(
-                  onPressed: () {
-                    Navigator.pop(context); // 팝업창 닫기
-
-                    // Navigator.pushNamed로 장바구니 화면으로 데이터 전달
-                    Navigator.pushNamed(
-                      context,
-                      '/cart', // 라우트 이름
-                      arguments: {
-                        'selectedSize': selectedSize,
-                        'selectedColor': selectedColor,
-                      },
-                    );
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    try {
+                      await CartRepository().addToCart(
+                        inventoryId: widget.product.id,
+                        price: widget.product.price,
+                        totalPrice: widget.product.price, // 기본적으로 상품 가격 사용
+                      );
+                      Navigator.pushNamed(context, '/cart');
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("장바구니 추가 실패: $e")),
+                      );
+                    }
                   },
                   child: Text('장바구니'),
                 ),
