@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fronttodayhome/screens/cart/cart_vm.dart';
 import 'package:fronttodayhome/screens/order/component/order_screen_total_price.dart';
+import 'package:logger/logger.dart';
 import 'cart_screen_list_product.dart';
 
 class CartScreenList extends ConsumerWidget {
@@ -22,7 +23,7 @@ class CartScreenList extends ConsumerWidget {
         children: [
           CheckAllBar(cartModel.items, ref), // 전체 선택 바
           SizedBox(
-            height: 590,
+            height: 490,
             child: ListView.builder(
               itemCount: cartModel.items.length,
               itemBuilder: (context, index) {
@@ -80,16 +81,18 @@ class CartScreenList extends ConsumerWidget {
 }
 
 // 장바구니 하단에 표시되는 UI 구성
-class BottomBar extends StatelessWidget {
+class BottomBar extends ConsumerWidget {
   final List<ShoppingCartItem> items;
 
   BottomBar(this.items);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,ref) {
     final selectedItems = items.where((item) => item.isChecked).toList(); // 체크된 아이템만 추출
     final selectedCount = selectedItems.length; // 체크된 아이템 수
     final totalPrice = selectedItems.fold(0, (sum, item) => sum + item.totalPrice); // 총 금액 계산
+
+    CartVm model = ref.read(cartProvider.notifier);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -108,8 +111,11 @@ class BottomBar extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () {
+                Logger().d("바로구매 버튼 클릭");
                 // 선택된 아이템만 추려서 구매하기로 이동
-                Navigator.pushNamed(context, "/order", arguments: selectedItems);
+                model.subbmit(selectedItems);
+
+
               },
               child: Container(
                 height: 45,
@@ -142,7 +148,7 @@ class Price extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedItems = items.where((item) => item.isChecked).toList(); // 체크된 아이템만 추출
+    final List<ShoppingCartItem> selectedItems = items.where((item) => item.isChecked).toList(); // 체크된 아이템만 추출
     final totalPrice = selectedItems.fold(0, (sum, item) => sum + item.totalPrice); // 총 상품 금액 계산
 
     return Padding(

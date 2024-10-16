@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:fronttodayhome/screens/order/order_vm.dart';
 
 class OrderScreenTotalPrice extends StatelessWidget {
+  final OrderModel order;
+  OrderScreenTotalPrice(this.order);
+
+  int calculateTotalPrice() {
+    return order.orderDetails.fold(0, (sum, item) => sum + item.totalPrice);
+  }
 
   @override
   Widget build(BuildContext context) {
+    int totalPrice = calculateTotalPrice();
     return Column(
       children: [
         Container(height: 10,color: Colors.black12),
@@ -14,17 +22,17 @@ class OrderScreenTotalPrice extends StatelessWidget {
             children: [
               Text("결제금액",style: TextStyle(color: Colors.black,fontSize: 22,fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
-              PriceLine("총 상품금액", "", "310,000"),
-              PriceLine("배송비", "+", "15,000"),
-              PriceLine("쿠폰 사용", "-", "131,000"),
-              PriceLine("포인트 사용", "-", "131,000"),
+              PriceLine("총 상품금액", "", "$totalPrice"),
+              PriceLine("배송비", "+", "0"),
+              PriceLine("쿠폰 사용", "-", "0"),
+              PriceLine("포인트 사용", "-", "0"),
               SizedBox(height: 10),
               Divider(),
               Row(
                 children: [
                   Text("최종 결제 금액",style: TextStyle(color: Colors.black,fontSize: 22,fontWeight: FontWeight.bold)),
                   Spacer(),
-                  Text("249,000원",style: TextStyle(color: Colors.lightBlueAccent,fontSize: 25,fontWeight: FontWeight.bold)),
+                  Text("$totalPrice원",style: TextStyle(color: Colors.lightBlueAccent,fontSize: 25,fontWeight: FontWeight.bold)),
                 ],
               ),
               Row(
@@ -39,7 +47,7 @@ class OrderScreenTotalPrice extends StatelessWidget {
                   width: 370,
                   height: 40,
                   decoration: BoxDecoration(color: Colors.lightBlueAccent,borderRadius: BorderRadius.circular(7)),
-                  child: Center(child: Text("249,000원 결제하기",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16))),
+                  child: Center(child: Text("$totalPrice원 결제하기",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16))),
                 ),
               ),
             ],

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ShoppingListBanner extends StatelessWidget {
+  final name;
+  final categoryName;
+
+  ShoppingListBanner(this.name, this.categoryName);
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Locate(),
+        Locate(name,categoryName),
         mImage(),
         BannerButtons(),
         Container(height: 15, color: Colors.black12),
@@ -65,7 +70,7 @@ class mImage extends StatelessWidget {
       child: AspectRatio(
           aspectRatio: 7 / 2,
           child: Image.network(
-            "https://picsum.photos/id/200/1000/200",
+            "https://image.ohou.se/i/bucketplace-v2-development/uploads/contests/web_banner/156204752467162160.png?gif=1&w=1440",
             fit: BoxFit.cover,
           )),
     );
@@ -73,9 +78,9 @@ class mImage extends StatelessWidget {
 }
 
 class Locate extends StatelessWidget {
-  const Locate({
-    super.key,
-  });
+  final name;
+  final categoryName;
+  Locate(this.name,this.categoryName);
 
   @override
   Widget build(BuildContext context) {
@@ -84,11 +89,11 @@ class Locate extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("가구", style: TextStyle(fontSize: 12)),
+          Text("$categoryName", style: TextStyle(fontSize: 12)),
           const SizedBox(width: 5),
           Icon(Icons.arrow_forward_ios_sharp, size: 11, color: Colors.black38),
           const SizedBox(width: 5),
-          Text("침대", style: TextStyle(fontSize: 12)),
+          Text("$name", style: TextStyle(fontSize: 12)),
         ],
       ),
     );

@@ -38,12 +38,10 @@ class _SCategory {
 class CategoryScreenVm extends StateNotifier<CategoryScreenModel> {
   CategoryScreenVm(super.state);
 
-  List<_LCategory>? categorys;
-
   Future<void> notifyInit() async {
     // 1. 통신을 해서 응답 받기
     List<dynamic> list = await CategoryRepository().findAll();
-    categorys =
+    List<_LCategory>? categorys =
         list.map((e) => _LCategory.fromMap(e)).toList();
 
     // 2. 상태 갱신
@@ -51,7 +49,7 @@ class CategoryScreenVm extends StateNotifier<CategoryScreenModel> {
   }
 
   void updateIndex(int newIndex) {
-    state = CategoryScreenModel(selectedIndex: newIndex, list: categorys);
+    state = CategoryScreenModel(selectedIndex: newIndex, list: state.list);
   }
 }
 
