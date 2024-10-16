@@ -36,6 +36,7 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
       } else {
         print('이미지 없음');
       }
+      Navigator.popUntil(context, ModalRoute.withName('/mypage'));
 
       // 이곳에 서버로 전송하는 로직 추가 (리뷰 내용과 이미지를 서버로 전송)
     } else {

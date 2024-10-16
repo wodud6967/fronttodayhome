@@ -8,14 +8,14 @@ class ProductDetailReview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> reviewImages1 = [
-      'https://picsum.photos/101/101',
-      'https://picsum.photos/102/102',
-      'https://picsum.photos/103/103',
+      'https://image.hanssem.com/hsimg/gds/1050/1064/1064629_A1.jpg?v=20241002161516',
+      'https://image.hanssem.com/hsimg/gds/330/992/992693_A1.jpg?v=20240812104935',
+      'https://image.hanssem.com/hsimg/gds/330/800/800342_A1.jpg?v=20240723101452',
     ];
 
     final List<String> reviewImages2 = [
-      'https://picsum.photos/104/104',
-      'https://picsum.photos/105/105',
+      'https://image.hanssem.com/hsimg/gds/330/974/974970_A1.jpg?v=20241011152438',
+      'https://image.hanssem.com/hsimg/gds/330/993/993015_A1.jpg?v=20240812104316',
     ];
 
     return Padding(

@@ -22,7 +22,7 @@ class MyPageHeader extends StatelessWidget {
         // 프로필 텍스트 왼쪽 정렬
         children: [
           Text(
-            "NickName", // 닉네임
+            "John", // 닉네임
             style: TextStyle(
               fontSize: 25,
               color: Colors.black,
@@ -39,7 +39,7 @@ class MyPageHeader extends StatelessWidget {
               ),
               SizedBox(width: 5), // 팔로워와 수 사이의 간격
               Text(
-                "0", // 팔로워 수
+                "150", // 팔로워 수
                 style: TextStyle(
                   fontSize: 15,
                 ),
@@ -63,7 +63,7 @@ class _buildHeaderAvatar extends StatelessWidget {
       width: 70,
       height: 70,
       child: CircleAvatar(
-        backgroundImage: AssetImage("assets/avatar.png"), // 아바타 이미지
+        backgroundImage: AssetImage("assets/jjangah.jpg"), // 아바타 이미지
       ),
     );
   }
