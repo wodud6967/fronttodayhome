@@ -1,22 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fronttodayhome/components/image_container.dart';
-import 'package:fronttodayhome/models/neighborhood_life.dart';
+import 'package:fronttodayhome/models/Feed.dart';
 import 'package:fronttodayhome/theme.dart';
 
 class LookingBody extends StatelessWidget {
-  final NeighborhoodLife neighborhoodLife;
+  final Feed feed;
 
-  const LookingBody({Key? key, required this.neighborhoodLife})
+
+  const LookingBody({Key? key, required this.feed}) // 생성자 이름을 LookingBody로 변경
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
-          bottom: BorderSide(width: 10.0, color: Color(0xFFD4D5DD)),
+          bottom: BorderSide(width: 1, color: Color(0xFFD4D5DD)),
         ),
       ),
       child: Column(
@@ -53,13 +55,13 @@ class LookingBody extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(4)),
                 color: Color.fromRGBO(247, 247, 247, 1)),
             child: Text(
-              neighborhoodLife.category,
+              feed.category,
               style: TextTheme().bodyMedium,
             ),
           ),
           Text(
-            neighborhoodLife.date,
-            style: TextTheme().bodyMedium, //작동안함
+            feed.date,
+            style: textTheme().bodyMedium, //작동안함
             //스타일해야될듯
           ),
         ],
@@ -77,13 +79,13 @@ class LookingBody extends StatelessWidget {
             width: 30,
             height: 30,
             borderRadius: 15,
-            imageUrl: neighborhoodLife.profileImgUri,
+            imageUrl: feed.profileImgUri,
           ),
           const SizedBox(width: 8.0),
           Text.rich(
             TextSpan(children: [
               TextSpan(
-                text: '${neighborhoodLife.userName}',
+                text: '${feed.userName}',
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
@@ -104,7 +106,7 @@ class LookingBody extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
-          neighborhoodLife.content,
+          feed.content,
           style: textTheme().bodyLarge,
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
@@ -116,12 +118,13 @@ class LookingBody extends StatelessWidget {
 
   // 기존의 _buildImage 위젯을 다시 통합
   Widget _buildImage() {
+
     return Visibility(
-      visible: neighborhoodLife.contentImgUri != 's',//이부분 나중에 공백으로
+      visible: feed.contentImgUris.isNotEmpty,
       child: Padding(
         padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
         child: Image.network(
-          'https://picsum.photos/id/872/200/300?grayscale',
+          feed.contentImgUris.isNotEmpty ? feed.contentImgUris[0] : '',
           height: 200,
           width: double.infinity,
           fit: BoxFit.cover,
@@ -132,12 +135,52 @@ class LookingBody extends StatelessWidget {
 
   // 기존의 _buildTail 위젯을 다시 통합
   Widget _buildTail() {
+    if (feed.contentImgUris.isEmpty) {
+      return SizedBox.shrink(); // 아무것도 렌더링하지 않음
+    }
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: Container(
-        color: Colors.lime[100],
-        height: 50,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              for (var imageUrl in feed.contentImgUris.take(3)) // 최대 3개의 이미지만 표시
+                _buildImageItem(imageUrl),
+
+            ],
+          ),
+          Row(
+            children:[
+              Text(
+                '상품 더보기',
+                style: textTheme().displayMedium,
+              ),
+              const SizedBox(width: 8.0),
+              Icon(
+                CupertinoIcons.right_chevron,
+                size: 18.0,
+                color: Colors.black87,
+              ),
+            ]
+          ),
+        ],
       ),
     );
   }
+}
+
+Widget _buildImageItem(String imageUrl) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(8.0), // 이미지에 border radius 적용
+      child: Image.network(
+        imageUrl,
+        width: 50, // 이미지 너비
+        height: 50, // 이미지 높이
+        fit: BoxFit.cover, // 이미지 잘 맞게 표시
+      ),
+    ),
+  );
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fronttodayhome/components/image_container.dart';
-import 'package:fronttodayhome/models/neighborhood_life.dart';
+import 'package:fronttodayhome/models/Feed.dart';
 import 'package:fronttodayhome/screens/looking/components/looking_body.dart';
 
 class LookingScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +28,12 @@ class LookingScreen extends StatelessWidget {
       body: ListView(
         children: [
           look_header(),
-           Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: LookingBody(neighborhoodLife: neighborhoodLifeList[2])),
+           ...List.generate(
+             feedList.length,
+           (index) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: LookingBody(feed: feedList[index])),
+           ),
 
         ],
 
