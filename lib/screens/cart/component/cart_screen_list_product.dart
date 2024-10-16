@@ -120,7 +120,7 @@ class _ImageLine extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
               child: Column(
                 children: [
-                  Text(product.title,
+                  Text(product.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

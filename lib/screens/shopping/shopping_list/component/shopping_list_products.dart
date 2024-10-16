@@ -16,7 +16,7 @@ class ShoppingListProducts extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          ProductsHeader(),
+          ProductsHeader(model),
           ProductsOption(),
           Wrap(
             children: model.map((post) {
@@ -173,9 +173,8 @@ class ProductsOptionButton extends StatelessWidget {
 }
 
 class ProductsHeader extends StatelessWidget {
-  const ProductsHeader({
-    super.key,
-  });
+  List<Product> models;
+  ProductsHeader(this.models);
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +183,7 @@ class ProductsHeader extends StatelessWidget {
       child: Row(
         children: [
           Text("전체"),
-          Text("21,688"),
+          Text("${models.length}"),
           Spacer(),
           Text("인기순"),
           SizedBox(width: 5),

@@ -10,10 +10,10 @@ import 'component/shopping_list_products.dart';
 import 'component/shopping_list_similar_products.dart';
 
 class ShoppingListScreen extends ConsumerWidget {
-  final int id;
-  final String name;
-
-  ShoppingListScreen(this.id, this.name);
+  final id;
+  final name;
+  final categoryName;
+  ShoppingListScreen(this.id, this.name, this.categoryName);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,7 +29,7 @@ class ShoppingListScreen extends ConsumerWidget {
         body: ListView(
           children: [
             ShoppingListAppbar("$name"),
-            ShoppingListBanner(),
+            ShoppingListBanner(name,categoryName),
             ShoppingListSimilarProducts(model.recentPosts, id), // 수정된 부분
             ShoppingListFilter(),
             ShoppingListProducts(model.pageTotalSold, id), // 수정된 부분

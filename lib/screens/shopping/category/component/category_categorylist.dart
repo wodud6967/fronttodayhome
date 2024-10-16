@@ -9,7 +9,7 @@ class CategoryCategoryList extends ConsumerWidget {
     CategoryScreenModel model = ref.watch(CategoryScreenProvider);
     int index = model.selectedIndex;
 
-    if (model == null || model.list == null) {
+    if (model.list == null) {
       return CircularProgressIndicator();
     } else {
       List<Map<String, dynamic>> lList = model.list!
@@ -90,7 +90,7 @@ class _CategoryListDetailState extends State<CategoryListDetail> {
                       children: [
                         InkWell(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingListScreen(detail["id"],detail["name"])));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingListScreen(detail["id"],detail["name"],widget.categoryName)));
                             },
                             child: Text("전체")),
                       ],

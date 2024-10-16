@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fronttodayhome/screens/order/order_vm.dart';
 
 class OrderScreenOrderer extends StatefulWidget {
+  final OrderModel order;
+  OrderScreenOrderer(this.order);
+
 
 
   @override
@@ -27,7 +31,7 @@ class _OrderScreenOrdererState extends State<OrderScreenOrderer> {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black),
                   ),
                   Spacer(),
-                  Text("하은지 010-0000-0000",style: TextStyle(color: Colors.black)),
+                  Text("${widget.order.order.userName}  ${widget.order.order.phone}",style: TextStyle(color: Colors.black)),
                   SizedBox(width: 5),
                   Container(child: InkWell(onTap:(){
                     setState(() {

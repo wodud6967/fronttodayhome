@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fronttodayhome/data/repository/cart_repository.dart';
+import 'package:fronttodayhome/main.dart';
+import 'package:fronttodayhome/screens/order/order_screen.dart';
 import 'package:logger/logger.dart';
 
 class ShoppingCartItem {
@@ -39,7 +43,8 @@ class ShoppingCartItem {
       name: json['name'],
       title: json['title'],
       content: json['content'],
-      mainPhoto: json['mainphoto'], // JSON 키 수정
+      mainPhoto: json['mainphoto'],
+      // JSON 키 수정
       brandName: json['brandName'],
     );
   }
@@ -58,25 +63,41 @@ class CartModel {
 
   // 체크된 아이템의 총 가격 계산
   int get checkedTotalPrice {
-    return items.fold(0, (sum, item) => sum + (item.isChecked ? item.totalPrice : 0));
+    return items.fold(
+        0, (sum, item) => sum + (item.isChecked ? item.totalPrice : 0));
   }
 }
 
 class CartVm extends StateNotifier<CartModel?> {
   CartVm(super.state);
+  final mContext = navigatorKey.currentContext!;
 
+  Future<void> subbmit(List<ShoppingCartItem> selectedItems) async {
+    if (selectedItems.length == 0) {
+      Logger().d("결제할 상품 없음");
+    } else {
+      final List<Map<String, int>> orderIds = selectedItems
+          .map((item) => {
+                'id': item.id, // key는 'id'이고 value는 item의 id 값
+              })
+          .toList();
+      Logger().d("파싱 결과 : $orderIds");
+      Map<String, dynamic> saveOrder = await CartRepository().saveOrder(orderIds);
+      Navigator.push(mContext, MaterialPageRoute(builder: (context) => OrderScreen(saveOrder)));
+
+
+    }
+  }
 
   Future<void> notifyInit() async {
     // 1. 통신을 해서 응답 받기
     List<dynamic> list = await CartRepository().findAll();
-    Logger().d(list);
     List<ShoppingCartItem> items = list.map((itemJson) {
       return ShoppingCartItem.fromJson(itemJson);
     }).toList();
 
     int totalPrice = items.fold(0, (sum, item) => sum + item.totalPrice);
     bool isEmpty = items.isEmpty;
-    Logger().d(items);
 
     // 2. 상태 갱신
     state = CartModel(
@@ -110,9 +131,11 @@ class CartVm extends StateNotifier<CartModel?> {
       );
     }
   }
+
   void updateCartModel() {
     if (state != null) {
-      int totalPrice = state!.items.fold(0, (sum, item) => sum + item.totalPrice);
+      int totalPrice =
+          state!.items.fold(0, (sum, item) => sum + item.totalPrice);
       bool isEmpty = state!.items.isEmpty;
 
       state = CartModel(
@@ -125,6 +148,7 @@ class CartVm extends StateNotifier<CartModel?> {
 }
 
 // Provider 설정
-final cartProvider = StateNotifierProvider.autoDispose<CartVm, CartModel?>((ref) {
+final cartProvider =
+    StateNotifierProvider.autoDispose<CartVm, CartModel?>((ref) {
   return CartVm(null)..notifyInit();
 });

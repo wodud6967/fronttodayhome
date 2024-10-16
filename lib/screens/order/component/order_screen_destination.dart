@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fronttodayhome/screens/order/order_vm.dart';
 
 class OrderScreenDestination extends StatefulWidget {
+  final OrderModel order;
+  OrderScreenDestination(this.order);
+
   @override
   State<OrderScreenDestination> createState() => _OrderScreenDestinationState();
 }
@@ -31,13 +36,13 @@ class _OrderScreenDestinationState extends State<OrderScreenDestination> {
             ],
           ),
           SizedBox(height: 15),
-          Text("수민집", style: TextStyle(
+          Text("${widget.order.order.userName}", style: TextStyle(
               fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold)),
           SizedBox(height: 7),
-          Text("부산 강서구 신호산단1로 140번길 0-00 (신호동), 베타빌 401호",
+          Text("${widget.order.order.address}",
               style: TextStyle(color: Colors.black)),
           SizedBox(height: 7),
-          Text("정수민 010-0000-0000"),
+          Text("${widget.order.order.userName} ${widget.order.order.phone}"),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

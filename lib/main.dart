@@ -22,7 +22,6 @@ class TodayHome extends StatelessWidget {
     return MaterialApp(
       routes: {
         "/cart": (context) => CartScreen(),
-        "/order": (context) => OrderScreen(),
         "/login": (context) => LoginScreen(),
         "/kakaopay": (context) => KaKaoPayPage(),
         "/mypage": (context) => MyPageScreen(),

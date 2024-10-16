@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fronttodayhome/core/utils.dart';
+import 'package:logger/logger.dart';
 
 class CartRepository {
   // 장바구니 아이템 조회 메서드
@@ -32,5 +33,14 @@ class CartRepository {
       print("Error adding to cart: $e");
       throw e;
     }
+  }
+  Future<Map<String, dynamic>> saveOrder(List<Map<String, int>> orderIds) async {
+    var response = await dio.post("/api/order", data: orderIds);
+    if(response.statusCode==200){
+      Logger().d("성공!!");
+    }
+    Map<String, dynamic> body = response.data["body"];
+    return body;
+
   }
 }
