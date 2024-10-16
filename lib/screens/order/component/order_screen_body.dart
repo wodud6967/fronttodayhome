@@ -5,7 +5,6 @@ import 'package:fronttodayhome/screens/order/component/order_screen_products.dar
 import 'package:fronttodayhome/screens/order/order_vm.dart';
 
 import 'order_screen_orderer.dart';
-import 'order_screen_payment.dart';
 import 'order_screen_total_price.dart';
 
 class OrderScreenBody extends StatelessWidget {
@@ -22,7 +21,6 @@ class OrderScreenBody extends StatelessWidget {
         OrderScreenDestination(order),
         OrderScreenOrderer(order),
         OrderScreenProducts(order),
-        OrderScreenPayment(),
         OrderScreenTotalPrice(order),
       ],
     );
