@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fronttodayhome/components/image_container.dart';
-import 'package:fronttodayhome/models/Feed.dart';
+import 'package:fronttodayhome/screens/looking/looking_vm.dart';
 import 'package:fronttodayhome/theme.dart';
 
 class LookingBody extends StatelessWidget {
-  final Feed feed;
 
+  final Looking feed; // Feed 대신 Looking으로 변경
 
-  const LookingBody({Key? key, required this.feed}) // 생성자 이름을 LookingBody로 변경
-      : super(key: key);
+  const LookingBody({Key? key, required this.feed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +123,7 @@ class LookingBody extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
         child: Image.network(
-          feed.contentImgUris.isNotEmpty ? feed.contentImgUris[0] : '',
+          feed.contentImgUris.isNotEmpty ? feed.contentImgUris[0].url : '',
           height: 200,
           width: double.infinity,
           fit: BoxFit.cover,
@@ -146,7 +145,7 @@ class LookingBody extends StatelessWidget {
           Row(
             children: [
               for (var imageUrl in feed.contentImgUris.take(3)) // 최대 3개의 이미지만 표시
-                _buildImageItem(imageUrl),
+                _buildImageItem(imageUrl.url),
 
             ],
           ),

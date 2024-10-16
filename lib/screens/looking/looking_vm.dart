@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fronttodayhome/data/repository/feed_repository.dart';
+import 'package:logger/logger.dart';
 
 class LookingScreenVm extends StateNotifier<LookingScreenModel?> {
   LookingScreenVm(super.state);
@@ -9,8 +10,9 @@ class LookingScreenVm extends StateNotifier<LookingScreenModel?> {
   Future<void> notifyInit() async {
     // 1. 통신을 해서 응답 받기
     List<dynamic> list = await FeedRepository().findAll();
-    List<_Looking>? feeds = list.map((e) => _Looking.fromMap(e)).toList();
-
+    Logger().d("이건 응답받은 데이터 $list");
+    List<Looking>? feeds = list.map((e) => Looking.fromMap(e)).toList();
+    Logger().d(feeds);
     // 2. 상태 갱신
     state = LookingScreenModel (list: feeds);
   }
@@ -24,23 +26,23 @@ class LookingScreenVm extends StateNotifier<LookingScreenModel?> {
 
 class LookingScreenModel {
 
-  List<_Looking>? list;
+  List<Looking>? list;
 
   LookingScreenModel({this.list});
 }
 
 
 // Feed 창고 데이터
-class _Looking {
+class Looking {
   final String category;
   final String profileImgUri;
   final String userName;
   final int postId;
   final String content;
   final String date;
-  final List<String> contentImgUris;
+  final List<ContentImgUris> contentImgUris; // 대문자로 수정
 
-  _Looking({
+  Looking({
     required this.category,
     required this.profileImgUri,
     required this.userName,
@@ -50,19 +52,36 @@ class _Looking {
     this.contentImgUris = const [],
   });
 
+
   // JSON 데이터를 Feed 객체로 변환하는 메서드
-  factory _Looking.fromMap(Map<String, dynamic> map) {
-    return _Looking(
+  factory Looking.fromMap(Map<String, dynamic> map) {
+    return Looking(
       category: map['category'],
-      profileImgUri: map['profileImgUri'],
-      userName: map['userName'],
-      postId: map['postId'],
       content: map['content'],
+      postId: map['postId'],
       date: map['date'],
-      contentImgUris: List<String>.from(map['contentImgUris'] ?? []),
+      userName: map['userName'],
+      profileImgUri: map['profileImgUrl'],
+      // userFeedPhotos를 ContentImgUris 객체로 변환
+      contentImgUris: (map['userFeedPhotos'] as List).map((photo) {
+        return ContentImgUris(
+          id: photo['id'],
+          type: photo['type'],
+          url: photo['url'],
+        );
+      }).toList(),
     );
   }
 }
+class ContentImgUris{
+  final int id;
+  final String type;
+  final String url;
+
+  ContentImgUris({required this.id, required this.type, required this.url});
+}
+
+
 
 final LookingScreenProvider =
 StateNotifierProvider<LookingScreenVm, LookingScreenModel?>((ref) {

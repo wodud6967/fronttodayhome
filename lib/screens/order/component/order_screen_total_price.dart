@@ -17,7 +17,7 @@ class OrderScreenTotalPrice extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     String? nextUrl =
-        ref.watch(KaKaoPayProvider(order.order.orderId)); // URL 가져오기
+    ref.watch(KaKaoPayProvider(order.order.orderId)); // URL 가져오기
     int totalPrice = calculateTotalPrice();
     if (nextUrl == null) {
       return Center(child: CircularProgressIndicator());
@@ -118,10 +118,10 @@ class PriceLine extends StatelessWidget {
           Spacer(),
           Text("$Symbol ",
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600)),
+              TextStyle(color: Colors.black, fontWeight: FontWeight.w600)),
           Text("$price",
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600)),
+              TextStyle(color: Colors.black, fontWeight: FontWeight.w600)),
           Text("원", style: TextStyle(color: Colors.black)),
         ],
       ),

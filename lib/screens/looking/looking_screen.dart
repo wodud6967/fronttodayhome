@@ -1,13 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fronttodayhome/components/image_container.dart';
 import 'package:fronttodayhome/models/Feed.dart';
 import 'package:fronttodayhome/screens/looking/components/looking_body.dart';
+import 'package:fronttodayhome/screens/looking/looking_vm.dart';
 
-class LookingScreen extends StatelessWidget {
+class LookingScreen extends ConsumerWidget {
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final model = ref.watch(LookingScreenProvider);
+    if (model == null || model.list == null) {
+      return Center(child: CircularProgressIndicator()); // 로딩 중일 때 표시
+    }
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
@@ -29,12 +35,12 @@ class LookingScreen extends StatelessWidget {
         children: [
           look_header(),
            ...List.generate(
-             feedList.length,
+             model.list!.length,
            (index) => Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
-                  child: LookingBody(feed: feedList[index])),
+                  child: LookingBody(feed: model.list![index]),
            ),
-
+           ),
         ],
 
       ),
