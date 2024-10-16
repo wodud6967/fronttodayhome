@@ -10,24 +10,29 @@ import 'component/shopping_list_products.dart';
 import 'component/shopping_list_similar_products.dart';
 
 class ShoppingListScreen extends ConsumerWidget {
-  final id;
-  final name;
+  final int id;
+  final String name;
+
   ShoppingListScreen(this.id, this.name);
 
   @override
-  Widget build(BuildContext context,ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ShoppingListModel? model = ref.watch(shoppingListProvider(id));
     if (model == null) {
-      return CircularProgressIndicator();
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
     } else {
       return Scaffold(
         body: ListView(
           children: [
             ShoppingListAppbar("$name"),
             ShoppingListBanner(),
-            ShoppingListSimilarProducts(model.recentPosts),
+            ShoppingListSimilarProducts(model.recentPosts, id), // 수정된 부분
             ShoppingListFilter(),
-            ShoppingListProducts(model.pageTotalSold),
+            ShoppingListProducts(model.pageTotalSold, id), // 수정된 부분
           ],
         ),
       );

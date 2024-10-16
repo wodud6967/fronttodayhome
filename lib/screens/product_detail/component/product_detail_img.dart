@@ -1,26 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fronttodayhome/screens/product_detail/product_detail_vm.dart';
+
+import '../../shopping/shopping_list/shopping_list_vm.dart';
 
 class ProductDetailImg extends StatelessWidget {
-  final List<String> imageUrls = [
-    'https://picsum.photos/600/400?image=1',
-    'https://picsum.photos/600/400?image=2',
-    'https://picsum.photos/600/400?image=3',
-    'https://picsum.photos/600/400?image=4',
-  ];
+  final Product product;
 
-  @override
-  Widget build(BuildContext context) {
-    return _productImg(imageUrls: imageUrls);
-  }
-}
-
-class _productImg extends StatelessWidget {
-  const _productImg({
-    super.key,
-    required this.imageUrls,
-  });
-
-  final List<String> imageUrls;
+  ProductDetailImg({required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -28,21 +14,16 @@ class _productImg extends StatelessWidget {
       children: [
         Container(
           height: 300,
-          child: PageView.builder(
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    imageUrls[index],
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              );
-            },
+          width: double.infinity,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              product.mainPhoto, // 단일 이미지 표시
+              fit: BoxFit.cover,
+            ),
           ),
         ),
+        const SizedBox(height: 10),
         Row(
           children: [
             const SizedBox(width: 10),
@@ -51,7 +32,7 @@ class _productImg extends StatelessWidget {
               style: TextStyle(
                 fontSize: 13,
               ),
-            )
+            ),
           ],
         ),
       ],
