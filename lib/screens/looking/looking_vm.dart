@@ -4,19 +4,19 @@ import 'package:fronttodayhome/data/repository/feed_repository.dart';
 class LookingScreenVm extends StateNotifier<LookingScreenModel?> {
   LookingScreenVm(super.state);
 
-  List<_Looking>? feeds;
+
 
   Future<void> notifyInit() async {
     // 1. 통신을 해서 응답 받기
     List<dynamic> list = await FeedRepository().findAll();
-    feeds = list.map((e) => _Looking.fromMap(e)).toList();
+    List<_Looking>? feeds = list.map((e) => _Looking.fromMap(e)).toList();
 
     // 2. 상태 갱신
     state = LookingScreenModel (list: feeds);
   }
 
   void updateIndex(int newIndex) { // 다시해야함
-    state = LookingScreenModel( list: feeds);
+    state = LookingScreenModel( list: state!.list);
   }
 }
 
