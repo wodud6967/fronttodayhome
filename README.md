@@ -1,15 +1,14 @@
 # 🛍️ 프로젝트 이름 - 오늘의 집 애플리케이션
 
 ## 📑 목차
-1. [프로젝트 개요](#-📝-프로젝트-개요)
-2. [주요 기능](#-🚀-주요-기능)
-3. [기술 스택](#-🛠️-기술-스택)
-4. [프로젝트 구조](#-📂-프로젝트-구조)
-5. [시연 영상](#-🎥-시연-영상)
-6. [PPT 자료](#-📊-PPT-자료)
+1. [프로젝트 개요](#프로젝트-개요)
+2. [주요 기능](#주요-기능)
+3. [기술 스택](#기술-스택)
+4. [프로젝트 구조](#프로젝트-구조)
+5. [시연 영상](#시연-영상)
+6. [PPT 자료](#ppt-자료)
 
-
-## 📝 프로젝트 개요
+## 프로젝트 개요
 Flutter와 Spring Boot를 기반으로 한 쇼핑몰 애플리케이션으로, 모바일 앱과 백엔드 서버 간의 협업을 통해 구축되었습니다. 
 
 - **프론트엔드 (Flutter)**
@@ -20,7 +19,7 @@ Flutter와 Spring Boot를 기반으로 한 쇼핑몰 애플리케이션으로, �
   - **Main:** 하은지, 하세연, 강재영
   - **Sub:** 홍성윤, 허성재
     
-## 🚀 주요 기능
+## 주요 기능
 ### 프론트엔드 
 - **로그인 및 회원가입**: Firebase Authentication을 사용한 사용자 인증
 - **마이페이지**: 사용자 정보 및 주문 내역 조회, 리뷰쓰기
@@ -72,7 +71,7 @@ Flutter와 Spring Boot를 사용하여 구현된 오늘의 집(copy) 애플리�
 </p>
 
 
-## 🛠️ 기술 스택
+## 기술 스택
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white"/>
   <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white"/>
@@ -86,7 +85,7 @@ Flutter와 Spring Boot를 사용하여 구현된 오늘의 집(copy) 애플리�
   <img src="https://img.shields.io/badge/Kakao%20Pay-FFCD00?style=for-the-badge&logo=kakaotalk&logoColor=black"/>
 </p>
 
-## 📂 프로젝트 구조
+## 프로젝트 구조
 ### 프론트엔드
 - lib/
   - components/
@@ -172,7 +171,7 @@ Flutter와 Spring Boot를 사용하여 구현된 오늘의 집(copy) 애플리�
     - .flutter-plugins - Flutter 플러그인 설정
     - .flutter-plugins-dependencies - 플러그인 종
       
-## 🎥 시연 영상  <!-- 새로 추가된 섹션 -->
+## 시연 영상  <!-- 새로 추가된 섹션 -->
 ### 📹 시연 영상
 <p align="center">
   <a href="https://youtu.be/BlS3Vq5PD1Y?feature=shared" target="_blank">
@@ -180,7 +179,7 @@ Flutter와 Spring Boot를 사용하여 구현된 오늘의 집(copy) 애플리�
   </a>
 </p>
 
-## 📊 PTT 자료
+## PTT 자료
 ### 📄 프로젝트 발표 자료 (PPT)
 <p align="center">
   <img src="https://github.com/user-attachments/assets/cff3c3f2-8fc7-413f-9999-7f35101be2b2" alt="Screenshot" width="400"/>
