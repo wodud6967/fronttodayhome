@@ -5,7 +5,9 @@
 2. [주요 기능](#주요-기능)
 3. [기술 스택](#기술-스택)
 4. [프로젝트 구조](#프로젝트-구조)
-5. [시연 영상 및 자료](#시연-영상-및-자료)  <!-- 새로 추가된 목차 -->
+5. [시연 영상](#시연-영상)  <!-- 새로 추가된 목차 -->
+6. [PPT 자료](#PPT-자료)  <!-- 새로 추가된 목차 -->
+
 
 ## 📝 프로젝트 개요
 Flutter와 Spring Boot를 기반으로 한 쇼핑몰 애플리케이션으로, 모바일 앱과 백엔드 서버 간의 협업을 통해 구축되었습니다. 
@@ -170,7 +172,7 @@ Flutter와 Spring Boot를 사용하여 구현된 오늘의 집(copy) 애플리�
     - .flutter-plugins - Flutter 플러그인 설정
     - .flutter-plugins-dependencies - 플러그인 종
       
-## 🎥 시연 영상 및 자료  <!-- 새로 추가된 섹션 -->
+## 🎥 시연 영상  <!-- 새로 추가된 섹션 -->
 ### 📹 시연 영상
 <p align="center">
   <a href="https://www.youtube.com/watch?v=YourVideoLinkHere" target="_blank">
@@ -178,3 +180,28 @@ Flutter와 Spring Boot를 사용하여 구현된 오늘의 집(copy) 애플리�
   </a>
 </p>
 
+## 📊 PTT 자료
+### 📄 프로젝트 발표 자료 (PPT)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cff3c3f2-8fc7-413f-9999-7f35101be2b2" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/7f966e29-06a0-40c8-bd02-90b9f4287978" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/436b03ad-2d5f-48c7-8add-ce7aa5f64828" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/3da1f4ad-b190-47b2-8900-a5f78bfc3973" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/b698e260-2030-4236-93e6-eb52714cde93" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/17b12cb7-8f95-474c-bd84-ae769e16b116" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/38b9aa24-9b3d-4784-b0fa-8a939ad3fc18" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/0ebe14de-44cf-4c76-a292-dce068e77518" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/02a32b86-0528-46be-a1dd-6950cceea2d9" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/1c6fec1d-fd5a-46a0-a58b-36e76b0d356d" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/3300f7e0-049f-45f6-98b9-d5901725b501" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/d622926e-8cab-43ba-a79e-b67df363334e" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/0781fc01-8dec-47e6-b0d1-bf8891910dec" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/1a20cdec-37ab-4fee-a491-77c9f4e81aac" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/dbc92e6f-a069-4366-bf43-18cd046ae309" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/deb633c0-8260-4b95-81e0-077bd0706f3b" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/c3a1ba17-8eed-4f9c-a634-864fc5abf6cd" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/9d1d8a42-ac00-4580-94a7-5ec77aca4811" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/1cc8bf46-61f4-4a9d-9620-4de565792f07" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/3221c1b8-a098-4852-8be8-74d42a09cbf8" alt="Screenshot" width="400"/>
+  <img src="https://github.com/user-attachments/assets/5c6b9d19-e0e4-4e33-b0b3-436999e1f779" alt="Screenshot" width="400"/>
+</p>
